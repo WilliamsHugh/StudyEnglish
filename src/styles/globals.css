@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-primary: #0057D9;
+  --color-primary-rgb: 0, 87, 217;
+  --color-secondary: #081B39;
+  --color-secondary-rgb: 8, 27, 57;
+  --color-accent: #FDB515;
+  --color-accent-rgb: 253, 181, 21;
+  --color-neutral-light: #F7F8FA;
+  --color-neutral-medium: #E7EAF0;
+  --color-neutral-dark: #8A96A8;
+  
+  --font-heading: 'Sora', 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  --ease-standard: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+  --shadow-glow: 0 0 20px rgba(0, 87, 217, 0.3);
+  --shadow-gold-glow: 0 0 20px rgba(253, 181, 21, 0.3);
+
+  --container-max: 1280px;
+  --padding-mobile: 16px;
+  --padding-tablet: 32px;
+  --padding-desktop: 48px;
+  --header-height: 64px;
+
+  --grid-size: 20px;
+
+  --font-h1: clamp(2rem, 5vw, 3.5rem);
+  --font-h2: clamp(1.5rem, 3.5vw, 2.25rem);
+  --font-h3: clamp(1.125rem, 2vw, 1.5rem);
+  --font-body: clamp(0.875rem, 1.2vw, 1rem);
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-body);
+  color: var(--color-neutral-light);
+  background-color: var(--color-secondary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Progress line on left edge */
+.progress-line {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.progress-line-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-accent));
+  transition: height 0.1s var(--ease-standard);
+  will-change: height;
+}
+
+/* Target cursor elements */
+.interactive {
+  cursor: pointer;
+}
+
+.target-cursor {
+  cursor: none !important;
+}
+
+/* Section spacing */
+.section {
+  position: relative;
+  padding: 80px var(--padding-mobile);
+  overflow: hidden;
+}
+
+@media (min-width: 641px) {
+  .section {
+    padding: 100px var(--padding-tablet);
+  }
+}
+
+@media (min-width: 1025px) {
+  .section {
+    padding: 120px var(--padding-desktop);
+  }
+}
+
+.section-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* Section title styling */
+.section-title {
+  font-size: var(--font-h2);
+  text-align: center;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--color-neutral-dark);
+  font-size: var(--font-body);
+  max-width: 600px;
+  margin: 0 auto 60px;
+  line-height: 1.7;
+}
+
+/* Utility */
+.gold-text {
+  color: var(--color-accent);
+}
+
+.blue-text {
+  color: var(--color-primary);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-dark);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Testimonials mobile carousel */
+@media (max-width: 640px) {
+  .testimonials-grid {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 16px;
+    padding-bottom: 8px;
+  }
+  .testimonials-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .testimonials-grid > * {
+    scroll-snap-align: start;
+    flex: 0 0 85%;
+    min-width: 280px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
